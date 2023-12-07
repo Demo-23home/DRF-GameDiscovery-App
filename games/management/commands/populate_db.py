@@ -19,11 +19,20 @@ class Command(BaseCommand):
 
     def populate_data(self):
         genres = Genre.objects.all()
+
+        # Check if there are genres available
+        if not genres.exists():
+            self.stdout.write(self.style.WARNING('No genres found. Please create genres first.'))
+            return
+
         platforms = [choice[0] for choice in Platform.choices]
 
-        for _ in range(10):  # Adjust the number as needed
+        for _ in range(1000):  # Adjust the number as needed
             title = self.generate_two_word_name()
+
+            # Choose a random genre
             genre = random.choice(genres)
+
             release_date = fake.date_between(start_date='-2y', end_date='today')
             description = fake.paragraph()
             platform = random.choice(platforms)

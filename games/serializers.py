@@ -8,15 +8,17 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = '__all__'
 
+
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
 
 class GameSerializer(serializers.ModelSerializer):
-    genre = serializers.StringRelatedField()    
+    platform = serializers.CharField(source='get_platform_display')  # Use get_platform_display for displaying platform choices
     reviews = ReviewSerializer(many=True, read_only=True)
 
     class Meta:
         model = Game
         fields = '__all__'
+

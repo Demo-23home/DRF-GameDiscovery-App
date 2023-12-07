@@ -7,6 +7,6 @@ class GameFilter(django_filters.FilterSet):
         model = Game
         fields = {
             'genre__name': ['exact'],
-            'platform': ['exact'],
-            'title': ['icontains'],  
+            'platform': ['iexact'],  # Use 'iexact' for case-insensitive filtering
+            'title': ['icontains'],
         }

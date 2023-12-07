@@ -1,6 +1,7 @@
 # games/views.py
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.pagination import PageNumberPagination
 from .models import Genre, Game, Review
 from .serializers import GenreSerializer, GameSerializer, ReviewSerializer
 from .filters import GameFilter
@@ -15,6 +16,7 @@ class GameListCreateView(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_class = GameFilter
     search_fields = ['title']
+    pagination_class = PageNumberPagination 
 
 class GameDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Game.objects.all()

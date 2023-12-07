@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Genre, Game, Review
 
+
+
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
@@ -12,6 +14,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class GameSerializer(serializers.ModelSerializer):
+    genre = serializers.StringRelatedField()    
     reviews = ReviewSerializer(many=True, read_only=True)
 
     class Meta:

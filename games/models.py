@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Genre(models.Model):
     name = models.CharField(max_length=255)
 
@@ -8,6 +9,18 @@ class Genre(models.Model):
 
 
 
+from django.db import models
+
+class Platform(models.TextChoices):
+    PC = 'pc', 'PC'
+    PLAYSTATION = 'playstation', 'PlayStation'
+    XBOX = 'xbox', 'Xbox'
+    NINTENDO = 'nintendo', 'Nintendo'
+    MAC = 'mac', 'Mac'
+    LINUX = 'linux', 'Linux'
+    ANDROID = 'android', 'Android'
+    IOS = 'ios', 'iOS'
+    WEB = 'web', 'Web'
 
 
 
@@ -16,9 +29,11 @@ class Game(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     release_date = models.DateField()
     description = models.TextField()
+    platform = models.CharField(max_length=20, choices=Platform.choices)
 
     def __str__(self):
         return self.title
+
 
 
 class Review(models.Model):

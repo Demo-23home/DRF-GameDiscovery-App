@@ -11,6 +11,18 @@ class Genre(models.Model):
 
 from django.db import models
 
+class GameDeveloper(models.Model):
+    name = models.CharField(max_length=255)
+    founded_date = models.DateField(null=True, blank=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+
+from django.db import models
+
 class Platform(models.TextChoices):
     PC = 'pc', 'PC'
     PLAYSTATION = 'playstation', 'PlayStation'

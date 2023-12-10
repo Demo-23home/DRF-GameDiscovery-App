@@ -1,0 +1,12 @@
+select * from games_game
+
+select * from games_gamedeveloper
+
+select * from games_genre
+
+select * from games_review
+
+select * from auth_user
+
+
+
